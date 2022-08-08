@@ -3,6 +3,7 @@ import {
   jest,
 } from "@jest/globals";
 
+import { createHmac } from "crypto";
 import { handler } from "../src/handler";
 import { loadEvent } from "../src/persistence";
 
@@ -45,22 +46,47 @@ test("Load test the handler with a storm of concurrent events", async () => {
   const itemCount = 1024;
 
   // Act
-  const calls = Array(itemCount)
-    .map((i) => {
-      const body = JSON.stringify({
-        entityId,
-        serial: i + 1,
-      });
-      return new FunctionEventMock({
+  const getHmac = (data: { id: string, serial: number }) => {
+    if (!process.env.SHOPIFY_SHARED_SECRET) {
+      return '';
+    }
+
+    return createHmac("sha256", process.env.SHOPIFY_SHARED_SECRET)
+      .update(JSON.stringify(data))
+      .digest('base64')
+      .toString();
+  }
+
+  const dosSelf = () => {
+    let serial = 0;
+    const calls: Array<any> = [];
+
+    while (serial < itemCount) {
+      serial++;
+
+      const body = {
+        id: entityId,
+        serial,
+      };
+      const headers = {
+        "X-Shopify-Hmac-Sha256": getHmac(body),
+      };
+      const mockEvent = new FunctionEventMock({
+        headers,
         body,
       });
-    })
-    .map((input) => handler(input, contextMock));
-  await Promise.all(calls);
-  console.log('calls', calls.length);
+
+      calls.push(handler(mockEvent, contextMock));
+    }
+
+    return calls;
+  }
+
+  await Promise.all(dosSelf());
+
   // Assert
   const lastKnownEvent = await loadEvent(entityId);
-    console.log('lastKnownEvent', lastKnownEvent);
+    
   if (!lastKnownEvent || !lastKnownEvent.body) {
     expect(lastKnownEvent).toBeDefined();
     expect(lastKnownEvent).not.toBeNull();
