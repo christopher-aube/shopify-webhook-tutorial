@@ -167,5 +167,5 @@ app.delete("/*", middleware);
 app.options("/*", middleware);
 
 app.listen(port, () => {
-  console.log(`node12-ts listening on port: ${port}`);
+  console.log(`node:14-slim listening on port: ${port}`);
 });

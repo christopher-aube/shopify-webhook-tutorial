@@ -1,0 +1,19 @@
+version: '3.9'
+
+services:
+  db:
+    image: 'redis'
+    restart: 'always'
+    ports:
+      - '6379:6379'
+  server:
+    build: .
+    depends_on:
+      - db
+    ports:
+      - '8000:8000'
+    environment:
+      REDIS_HOST: db
+      REDIS_PORT: '6379'
+      EVENT_TOPIC: "some-topic"
+      SHOPIFY_SHARED_SECRET: "sometestingsecret"
