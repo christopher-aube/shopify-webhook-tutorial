@@ -27,7 +27,7 @@ export const handler: AsyncHandler<unknown, IFunctionContext> = async (
   const { EVENT_TOPIC: topic } = process.env;
   await publishEvent(event, topic);
 
-  const eventBody = JSON.parse(event.body.toString());
+  const eventBody = JSON.parse(JSON.stringify(event.body));
   const result = {
     ...eventBody,
     message: "OK",

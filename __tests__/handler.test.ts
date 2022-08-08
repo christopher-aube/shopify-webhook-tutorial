@@ -34,7 +34,7 @@ test("Handler should return corresponding payload", async () => {
   expect(succeed).toHaveBeenCalledTimes(1);
   expect(succeed).toHaveBeenCalledWith(
     expect.objectContaining({
-      id: 1234567890123456111,
+      id: "1234567890123456111",
     }),
   );
 });
