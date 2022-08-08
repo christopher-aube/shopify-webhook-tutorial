@@ -57,17 +57,19 @@ test("Load test the handler with a storm of concurrent events", async () => {
     })
     .map((input) => handler(input, contextMock));
   await Promise.all(calls);
-
+  console.log('calls', calls.length);
   // Assert
   const lastKnownEvent = await loadEvent(entityId);
-
+    console.log('lastKnownEvent', lastKnownEvent);
   if (!lastKnownEvent || !lastKnownEvent.body) {
     expect(lastKnownEvent).toBeDefined();
+    expect(lastKnownEvent).not.toBeNull();
     return;
   }
 
   if (!lastKnownEvent.body) {
     expect(lastKnownEvent.body).toBeDefined();
+    expect(lastKnownEvent.body).not.toBeNull();
     return;
   }
   
