@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "preserveConstEnums": true,
+    "strictNullChecks": false,
+    "sourceMap": true,
+    "allowJs": true,
+    "target": "es5",
+    "outDir": "dist",
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "declaration": true,
+    "strict": true,
+    "lib": [
+      "es2020"
+    ],
+    "rootDir": "./",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "types": [
+      "@types/jest",
+      "node"
+    ]
+  },
+  "include": [
+    "index.ts"
+  ],
+  "exclude": [
+    "**/*.test.ts",
+    "node_modules"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "headers": {
+    "Accept": "*/*",
+    "Accept-Encoding": "gzip;q=1.0,deflate;q=0.6,identity;q=0.3",
+    "CloudFront-Forwarded-Proto": "https",
+    "CloudFront-Is-Desktop-Viewer": "true",
+    "CloudFront-Is-Mobile-Viewer": "false",
+    "CloudFront-Is-SmartTV-Viewer": "false",
+    "CloudFront-Is-Tablet-Viewer": "false",
+    "CloudFront-Viewer-Country": "US",
+    "Content-Type": "application/json",
+    "Host": "foo123.execute-api.us-east-1.amazonaws.com",
+    "User-Agent": "Shopify-Captain-Hook",
+    "Via": "1.1 5dd2304368effbad5413134075a82ff1.cloudfront.net (CloudFront)",
+    "X-Amz-Cf-Id": "iZ4AogxeUVwlz6ZP-beXNCb0I2Eq-VIGFt-tTS8bVB_h_kdsRxm3yw==",
+    "X-Amzn-Trace-Id": "Root=1-609d2fcb-68aada025380a56511574010",
+    "X-Forwarded-For": "34.74.151.23, 70.132.58.144",
+    "X-Forwarded-Port": "443",
+    "X-Forwarded-Proto": "https",
+    "X-Shopify-Api-Version": "2020-04",
+    "X-Shopify-Collection-Id": "1234567890123456111",
+    "X-Shopify-Hmac-Sha256": "M+po1dw4zNqf0aXPvuj+VrqUvnnEV/OGMia5bdDIAic=",
+    "X-Shopify-Shop-Domain": "altitudesports-dev.myshopify.com",
+    "X-Shopify-Topic": "collections/create",
+    "X-Shopify-Webhook-Id": "7c105f8d-bb31-4fe1-b37d-a9e8bf21fd66"
+  },
+  "path": "/datalayer/dev",
+  "method": "POST",
+  "query": {},
+  "body": "{\"id\":1234567890123456111,\"handle\":\"burley\",\"title\":\"Burley\",\"updated_at\":\"2021-05-13T09:55:20-05:00\",\"body_html\":\"\",\"published_at\":\"2021-05-13T09:55:20-04:00\",\"sort_order\":\"best-selling\",\"template_suffix\":\"enhanced\",\"disjunctive\":false,\"rules\":[{\"column\":\"vendor\",\"relation\":\"equals\",\"condition\":\"Burley\"}],\"published_scope\":\"web\",\"admin_graphql_api_id\":\"gid:\\/\\/shopify\\/Collection\\/260956487751\"}"
+}
