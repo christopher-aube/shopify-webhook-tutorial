@@ -19,7 +19,7 @@
     "X-Forwarded-Proto": "https",
     "X-Shopify-Api-Version": "2020-04",
     "X-Shopify-Collection-Id": "1234567890123456111",
-    "X-Shopify-Hmac-Sha256": "M+po1dw4zNqf0aXPvuj+VrqUvnnEV/OGMia5bdDIAic=",
+    "X-Shopify-Hmac-Sha256": "8S0qkYTQQ5tZ417jBik/r9oQ7ki5aO9MStEZ6iS3gSI=",
     "X-Shopify-Shop-Domain": "altitudesports-dev.myshopify.com",
     "X-Shopify-Topic": "collections/create",
     "X-Shopify-Webhook-Id": "7c105f8d-bb31-4fe1-b37d-a9e8bf21fd66"
@@ -27,5 +27,24 @@
   "path": "/datalayer/dev",
   "method": "POST",
   "query": {},
-  "body": "{\"id\":1234567890123456111,\"handle\":\"burley\",\"title\":\"Burley\",\"updated_at\":\"2021-05-13T09:55:20-04:00\",\"body_html\":\"\",\"published_at\":\"2021-05-13T09:55:20-04:00\",\"sort_order\":\"best-selling\",\"template_suffix\":\"enhanced\",\"disjunctive\":false,\"rules\":[{\"column\":\"vendor\",\"relation\":\"equals\",\"condition\":\"Burley\"}],\"published_scope\":\"web\",\"admin_graphql_api_id\":\"gid:\\/\\/shopify\\/Collection\\/260956487751\"}"
+  "body": {
+    "id": "1234567890123456111",
+    "handle": "burley",
+    "title": "Burley",
+    "updated_at": "2021-05-13T09:55:20-04:00",
+    "body_html": "",
+    "published_at": "2021-05-13T09:55:20-04:00",
+    "sort_order": "best-selling",
+    "template_suffix": "enhanced",
+    "disjunctive": false,
+    "rules": [
+      {
+        "column": "vendor",
+        "relation": "equals",
+        "condition": "Burley"
+      }
+    ],
+    "published_scope": "web",
+    "admin_graphql_api_id": "gid://shopify/Collection/260956487751"
+  }
 }

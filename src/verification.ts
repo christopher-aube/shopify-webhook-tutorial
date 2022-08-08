@@ -15,13 +15,12 @@ import { IFunctionEvent } from "./types";
  * source or not
  */
 export const isValidWebhookCall = (event: IFunctionEvent<unknown>): boolean => {
-  const { "X-Shopify-Hmac-SHA256": expectedHmac } = event.headers;
+  const { "X-Shopify-Hmac-Sha256": expectedHmac } = event.headers;
   const { SHOPIFY_SHARED_SECRET: sharedSecret = "" } = process.env;
-
   const hmac = createHmac("sha256", sharedSecret)
-    .update(event.body.toString())
-    .digest()
+    .update(JSON.stringify(event.body))
+    .digest('base64')
     .toString();
-
+  
   return hmac === expectedHmac;
 };
