@@ -60,6 +60,17 @@ test("Load test the handler with a storm of concurrent events", async () => {
 
   // Assert
   const lastKnownEvent = await loadEvent(entityId);
+
+  if (!lastKnownEvent || !lastKnownEvent.body) {
+    expect(lastKnownEvent).toBeDefined();
+    return;
+  }
+
+  if (!lastKnownEvent.body) {
+    expect(lastKnownEvent.body).toBeDefined();
+    return;
+  }
+  
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const eventBody: any = JSON.parse(lastKnownEvent.body.toString());
   expect(eventBody.entityId).toEqual(entityId);
