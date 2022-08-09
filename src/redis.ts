@@ -12,12 +12,17 @@ import { promisify } from "util";
  *
  * @returns a new instance of `RedisClient`
  */
-const newRedisClient: () => RedisClient = () => {
+export const newRedisClient: () => RedisClient = () => {
   const {
     REDIS_HOST: host = "redis",
     REDIS_PORT: portStr = "6379",
   } = process.env;
   const port = parseInt(portStr);
+  
+  if (isNaN(port)) {
+    throw new Error(`Unable to create redis client: port (${portStr}) is not a number`);
+  }
+
   return createClient({
     host,
     port,

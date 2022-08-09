@@ -2,7 +2,7 @@ import { expect } from "@jest/globals";
 
 import { isValidWebhookCall } from "../src/verification";
 
-const ogEnv = process.env;
+const ogEnv = JSON.parse(JSON.stringify(process.env));
 
 beforeEach(() => {
   jest.resetModules();
