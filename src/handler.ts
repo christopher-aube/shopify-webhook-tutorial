@@ -11,7 +11,7 @@ import { saveEvent } from "./persistence";
 import { isValidWebhookCall } from "./verification";
 
 export const handler: AsyncHandler<unknown, IFunctionContext> = async (
-  event: IFunctionEvent<unknown>,
+  event: IFunctionEvent,
   context: IFunctionContext,
 ) => {
   if (!isValidWebhookCall(event)) {
@@ -21,8 +21,13 @@ export const handler: AsyncHandler<unknown, IFunctionContext> = async (
       .status(404)
       .succeed(null);
   }
+  let entityId;
 
-  await saveEvent(event);
+  if (event.body && event.body.entityId) {
+    entityId = event.body.entityId;
+  }
+
+  await saveEvent(event, entityId);
 
   const { EVENT_TOPIC: topic } = process.env;
   await publishEvent(event, topic);

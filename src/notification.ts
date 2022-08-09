@@ -16,7 +16,7 @@ import { IFunctionEvent } from "./types";
  * @returns
  */
 export const publishEvent: (
-  event: IFunctionEvent<unknown>,
+  event: IFunctionEvent,
   topic: string,
 ) => Promise<void> = async (event, topic) => {
   const value = Buffer

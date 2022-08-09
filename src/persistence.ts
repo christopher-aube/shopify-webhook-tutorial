@@ -27,7 +27,7 @@ import { IFunctionEvent } from "./types";
  * @returns the indexing key associated to the persisted event
  */
 export const saveEvent: (
-  event: IFunctionEvent<unknown>,
+  event: IFunctionEvent,
   key?: string,
 ) => Promise<string> = async (event, key = nanoid()) => {
   const value = Buffer
@@ -46,7 +46,7 @@ export const saveEvent: (
  * @returns the persisted record for the associated key, or `null` if there is
  * no record associated to such key
  */
-export const loadEvent: (key: string) => Promise<IFunctionEvent<unknown>|null> = async (key) => {
+export const loadEvent: (key: string) => Promise<IFunctionEvent> = async (key) => {
   const recordExists = await redisExists(key);
   if (recordExists === 0) {
     // The record does not exist in the database, so we return nil

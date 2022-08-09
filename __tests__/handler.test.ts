@@ -6,6 +6,7 @@ import {
 import { createHmac } from "crypto";
 import { handler } from "../src/handler";
 import { loadEvent } from "../src/persistence";
+import { EventProps } from "../src/types";
 
 import {
   FunctionContextMock,
@@ -13,8 +14,6 @@ import {
 } from "./__mocks__";
 
 const contextMock = new FunctionContextMock(x => x);
-
-
 
 beforeEach(() => {
   jest.restoreAllMocks();
@@ -46,7 +45,7 @@ test("Load test the handler with a storm of concurrent events", async () => {
   const itemCount = 1024;
 
   // Act
-  const getHmac = (data: { id: string, serial: number }) => {
+  const getHmac = (data: { entityId: string, serial: number }) => {
     if (!process.env.SHOPIFY_SHARED_SECRET) {
       return '';
     }
@@ -65,7 +64,7 @@ test("Load test the handler with a storm of concurrent events", async () => {
       serial++;
 
       const body = {
-        id: entityId,
+        entityId,
         serial,
       };
       const headers = {
@@ -100,7 +99,7 @@ test("Load test the handler with a storm of concurrent events", async () => {
   }
   
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const eventBody: any = JSON.parse(lastKnownEvent.body.toString());
+  const eventBody: EventProps = lastKnownEvent.body;
   expect(eventBody.entityId).toEqual(entityId);
   expect(eventBody.serial).toEqual(itemCount);
 });

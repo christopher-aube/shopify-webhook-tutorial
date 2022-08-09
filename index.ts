@@ -13,6 +13,7 @@ import {
   FunctionEventHeaders,
   FunctionEventQuery,
   IFunctionEvent,
+  EventProps,
   IFunctionContext,
   ICallback,
 } from "./src/types";
@@ -61,8 +62,8 @@ if (useRawBody === "true") {
   }));
 }
 
-class FunctionEvent<T> implements IFunctionEvent<T> {
-  body: T;
+class FunctionEvent implements IFunctionEvent {
+  body: EventProps;
   headers = {};
   query: FunctionEventQuery;
   method: string;
@@ -105,15 +106,23 @@ class FunctionContext implements IFunctionContext {
     return this;
   }
 
-  succeed(result: unknown) {
+  succeed(result: IFunctionContext) {
     this.cbCalled++;
-    this.cb(null, result);
+
+    if (this.cb) {
+      this.cb(null, result);
+    }
+    
     return this;
   }
 
   fail(error: Error) {
     this.cbCalled++;
-    this.cb(error);
+
+    if (this.cb) {
+      this.cb(error);
+    }
+    
     return this;
   }
 }

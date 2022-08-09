@@ -14,7 +14,7 @@ import { IFunctionEvent } from "./types";
  * @returns a boolean value indicating whether this webhook call is from a valid
  * source or not
  */
-export const isValidWebhookCall = (event: IFunctionEvent<unknown>): boolean => {
+export const isValidWebhookCall = (event: IFunctionEvent): boolean => {
   let { "X-Shopify-Hmac-Sha256": expectedHmac } = event.headers;
 
   expectedHmac = expectedHmac ? expectedHmac : event.headers['x-shopify-hmac-sha256'];

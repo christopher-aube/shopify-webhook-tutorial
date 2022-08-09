@@ -1,13 +1,14 @@
 import {
   ICallback,
   IFunctionEvent,
+  EventProps,
   IFunctionContext,
   FunctionEventHeaders,
   FunctionEventQuery,
 } from "../../src/types";
 
-export class FunctionEventMock<T> implements IFunctionEvent<T> {
-  body: T;
+export class FunctionEventMock implements IFunctionEvent {
+  body: EventProps;
   headers: FunctionEventHeaders;
   query: FunctionEventQuery;
   method: string;
@@ -20,7 +21,7 @@ export class FunctionEventMock<T> implements IFunctionEvent<T> {
     method = "POST",
     path = "/",
   }: {
-    body: T,
+    body: EventProps,
     headers?: FunctionEventHeaders,
     query?: FunctionEventQuery,
     method?: string,
@@ -62,15 +63,23 @@ export class FunctionContextMock implements IFunctionContext {
     return this;
   }
 
-  succeed(result: unknown): FunctionContextMock {
+  succeed(result: IFunctionContext): IFunctionContext {
     this.cbCalled++;
-    this.cb(null, result);
+
+    if (this.cb) {
+      this.cb(null, result);
+    }
+    
     return this;
   }
 
   fail(error: Error): FunctionContextMock {
     this.cbCalled++;
-    this.cb(error);
+    
+    if (this.cb) {
+      this.cb(error);
+    }
+
     return this;
   }
 }
