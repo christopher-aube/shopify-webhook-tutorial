@@ -14,12 +14,8 @@
     "rootDir": "./",
     "resolveJsonModule": true,
     "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
     "types": ["@types/jest", "node"]
   },
   "include": ["./index.ts", "./src/**/*.ts", "./src/**/*.d.ts"],
-  "exclude": ["**/*.test.ts", "node_modules"],
-  "watchOptions": {
-    "excludeDirectories": ["node_modules", "dist", "__tests__"]
-  }
+  "exclude": ["**/*.test.ts", "node_modules"]
 }
