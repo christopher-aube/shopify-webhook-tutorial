@@ -19,6 +19,10 @@ export const isValidWebhookCall = (event: IFunctionEvent): boolean => {
 
   expectedHmac = expectedHmac ? expectedHmac : event.headers['x-shopify-hmac-sha256'];
 
+  if (!expectedHmac) {
+    return false;
+  }
+
   const { SHOPIFY_SHARED_SECRET: sharedSecret = "" } = process.env;
   const hmac = createHmac("sha256", sharedSecret)
     .update(JSON.stringify(event.body))
