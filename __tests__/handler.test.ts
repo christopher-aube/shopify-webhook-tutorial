@@ -39,6 +39,18 @@ test("Handler should return corresponding payload", async () => {
   );
 });
 
+test("Handler should invalidate on hash mismatch", async () => {
+  const succeed = jest.spyOn(contextMock, "succeed");
+  const fail = jest.spyOn(contextMock, "fail");
+  const input = require("./data/webhook-event-invalid.json");
+
+  const result = await handler(input, contextMock);
+  expect(result.getStatus()).toEqual(400);
+  expect(fail).toHaveBeenCalledTimes(0);
+  expect(succeed).toHaveBeenCalledTimes(1);
+  expect(succeed).toHaveBeenCalledWith(null);
+});
+
 test("Load test the handler with a storm of concurrent events", async () => {
   // Arrange
   const entityId = "some-unique-entity-id";
