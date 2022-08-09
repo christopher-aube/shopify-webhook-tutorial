@@ -49,7 +49,7 @@ test("Handler should invalidate on hash mismatch", async () => {
   const result = await handler(input, contextMock);
 
   // Assert
-  expect(result.getStatus()).toEqual(400);
+  expect(result.getStatus()).toEqual(404);
   expect(fail).toHaveBeenCalledTimes(0);
   expect(succeed).toHaveBeenCalledTimes(1);
   expect(succeed).toHaveBeenCalledWith(null);
