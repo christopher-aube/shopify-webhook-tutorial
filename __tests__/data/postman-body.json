@@ -1,0 +1,20 @@
+{
+  "id": "1234567890123456111",
+  "handle": "burley",
+  "title": "Burley",
+  "updated_at": "2021-05-13T09:55:20-04:00",
+  "body_html": "",
+  "published_at": "2021-05-13T09:55:20-04:00",
+  "sort_order": "best-selling",
+  "template_suffix": "enhanced",
+  "disjunctive": false,
+  "rules": [
+    {
+      "column": "vendor",
+      "relation": "equals",
+      "condition": "Burley"
+    }
+  ],
+  "published_scope": "web",
+  "admin_graphql_api_id": "gid://shopify/Collection/260956487751"
+}

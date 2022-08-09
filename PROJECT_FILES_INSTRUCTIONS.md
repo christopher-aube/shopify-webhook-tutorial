@@ -7,4 +7,4 @@ modify or delete these files because doing so results in a zero score.
 * __tests__/__mocks__/index.ts
 * index.ts
 * jest.config.ts
-* tsconfig.json
+* tsconfig.json // the include property was updated to have the files in `src` so that`yarn dkr:u` and `yarn dkr:ub` could run correctly.

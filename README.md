@@ -1,23 +1,50 @@
-# Test Instructions
+# Getting Starting
 
-**Note: for setup instructions, please refer to [`SETUP.MD`](./SETUP.md)**
+To get started with this project you will need to have [Docker](https://www.docker.com/get-started/) and [Yarn](https://yarnpkg.com/getting-started/install) installed.
 
-## Preliminary Remarks
+Once you have **Docker** and **Yarn** working you can begin to download the required dependencies.
 
-This is a take-home project challenge for a position at Altitude-Sports. The
-project is intentionally ambiguous and broad in scope, so feel free to apply
-your best judgement when tackling the different challenges presented by it.
+```
+yarn install
+```
 
-Also, please spend no longer than 2 hours on this challenge, as we certainly
-value your time and effort you'll dedicate on this.
+If you try to start or test the project, you will notice that it does quite start correctly because of errors related to [Redis](https://github.com/redis/node-redis). **Redis** is a dependency for this but managed by **Docker**, so lets get that up and running.
 
-We already provisioned a Git repository for you, and to submit your work just
-commit and push your changes to the `master` branch of the repo. We'll evaluate
-that branch once you finish the challenge.
+```
+yarn dkr:u
+```
 
-Thanks and good luck!
+Bringing **Docker** up will take some time to do, you'll know that it has finished once you see these lines in your terminal:
+
+```
+dev-server_1  | 7:25:25 AM - Found 0 errors. Watching for file changes.
+dev-server_1  | [nodemon] starting `node ./dist/index.js`
+dev-server_1  | node:14-slim listening on port: 8000
+```
+
+To test that the everything is working you can use [Postman](https://www.postman.com/downloads/) to mockup a request.
+
+The easiest way to do that is to use [this data](./__tests__/data/postman-headers.txt) for the headers (change to bulk edit mode and copy/paste) and [this data](./__tests__/data/postman-body.json) for the body.
+
+The response of the request should be a `200` status with the payload being the body data sent plus an additional property
+
+```
+{
+  "message": "OK"
+}
+```
+
+Requests that can't be processed will be logged to the terminal.
+
+The best way to run the tests is to connect to the server container (the name should be `shopify-webhook-tutorial_dev-server_1`), then run:
+
+```
+yarn test
+```
 
 ## Description
+
+> **Note: for setup instructions, please refer to [`SETUP.MD`](./SETUP.md)**
 
 The purpose of this project is to handle webhook calls from Shopify and feed the
 data in those calls as events to the rest of the system.
