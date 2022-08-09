@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
+
 import { expect } from "@jest/globals";
 
 import { isValidWebhookCall } from "../src/verification";

@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
+
 import {
   expect,
   jest,
@@ -6,7 +8,7 @@ import {
 import { createHmac } from "crypto";
 import { handler } from "../src/handler";
 import { loadEvent } from "../src/persistence";
-import { EventProps } from "../src/types";
+import { EventProps, IFunctionContext } from "../src/types";
 
 import {
   FunctionContextMock,
@@ -74,7 +76,7 @@ test("Load test the handler with a storm of concurrent events", async () => {
 
   const dosSelf = () => {
     let serial = 0;
-    const calls: Array<any> = [];
+    const calls: Array<Promise<IFunctionContext>> = [];
 
     while (serial < itemCount) {
       serial++;

@@ -28,12 +28,14 @@ export interface IFunctionContext {
   fail: (error: Error) => IFunctionContext;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export type Handler<I, O> = (
   event: IFunctionEvent,
   context: IFunctionContext,
   callback?: ICallback,
 ) => O;
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export type AsyncHandler<I, O> = (
   event: IFunctionEvent,
   context: IFunctionContext,

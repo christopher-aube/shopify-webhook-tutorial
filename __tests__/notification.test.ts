@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
+
 import { RedisClient } from "redis";
 import { publishEvent } from "../src/notification";
 
