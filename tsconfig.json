@@ -10,22 +10,16 @@
     "moduleResolution": "node",
     "declaration": true,
     "strict": true,
-    "lib": [
-      "es2020"
-    ],
+    "lib": ["es2020"],
     "rootDir": "./",
     "resolveJsonModule": true,
     "esModuleInterop": true,
-    "types": [
-      "@types/jest",
-      "node"
-    ]
+    "allowSyntheticDefaultImports": true,
+    "types": ["@types/jest", "node"]
   },
-  "include": [
-    "index.ts"
-  ],
-  "exclude": [
-    "**/*.test.ts",
-    "node_modules"
-  ]
+  "include": ["./index.ts", "./src/**/*.ts", "./src/**/*.d.ts"],
+  "exclude": ["**/*.test.ts", "node_modules"],
+  "watchOptions": {
+    "excludeDirectories": ["node_modules", "dist", "__tests__"]
+  }
 }

@@ -1,0 +1,25 @@
+version: '3.9'
+
+services:
+  dev-db:
+    image: 'redis'
+    restart: 'always'
+    ports:
+      - '6379:6379'
+  dev-server:
+    build:
+      context: .
+      dockerfile: ./dev.Dockerfile
+    depends_on:
+      - test-db
+    volumes:
+      - "./index.ts:/app/index.ts"
+      - "./src:/app/src"
+      - "./__tests__:/app/__tests__"
+    ports:
+      - '8000:8000'
+    environment:
+      REDIS_HOST: test-db
+      REDIS_PORT: '6379'
+      EVENT_TOPIC: "some-topic"
+      SHOPIFY_SHARED_SECRET: "sometestingsecret"

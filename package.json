@@ -7,11 +7,14 @@
   "main": "index.ts",
   "scripts": {
     "start": "node dist",
-    "dev": "ts-node-dev --respawn --debug --poll .",
+    "predev": "rimraf dist && tsc",
+    "dev": "concurrently --raw \"tsc --watch\" \"wait-on ./dist/index.js && nodemon ./dist/index.js\"",
     "build": "tsc",
     "lint": "eslint .",
     "format": "yarn lint --fix",
     "test": "jest",
+    "dkr:u": "docker-compose -f dev.docker-compose.yml up",
+    "dkr:ub": "docker-compose -f dev.docker-compose.yml up --build",
     "score": "yarn build && yarn lint && yarn test"
   },
   "dependencies": {
@@ -26,16 +29,21 @@
     "@types/redis-mock": "^0.17.0",
     "@typescript-eslint/eslint-plugin": "^4.23.0",
     "@typescript-eslint/parser": "^4.23.0",
+    "concurrently": "^7.3.0",
     "eslint": "^7.26.0",
     "eslint-plugin-jsonc": "^1.2.1",
     "eslint-plugin-putout": "^7.5.0",
+    "fs-extra": "^10.1.0",
     "jest": "^26.6.3",
     "jest-when": "^3.3.1",
+    "nodemon": "^2.0.19",
     "putout": "^17.2.0",
     "redis-mock": "^0.56.3",
+    "rimraf": "^3.0.2",
     "ts-jest": "^26.5.6",
     "ts-node": "^9.1.1",
     "ts-node-dev": "^1.1.6",
-    "typescript": "^4.1.5"
+    "typescript": "^4.1.5",
+    "wait-on": "^6.0.1"
   }
 }
